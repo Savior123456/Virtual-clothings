@@ -14,15 +14,18 @@ from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
 from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+    QPalette, QPixmap, QRadialGradient, QTransform,QPaintEvent)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBox,
     QFrame, QHBoxLayout, QLabel, QLayout,
     QMainWindow, QProgressBar, QPushButton, QSizePolicy,
     QSlider, QSpacerItem, QSpinBox, QSplitter,
-    QVBoxLayout, QWidget)
+    QVBoxLayout, QWidget,QStyle)
 import ui.resources_rc
 
+
 class Ui_MainWindow(object):
+
+ 
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -36,7 +39,7 @@ class Ui_MainWindow(object):
         self.Main_QF = QFrame(self.Main_QW)
         self.Main_QF.setObjectName(u"Main_QF")
         self.Main_QF.setStyleSheet(u"QFrame#Main_QF{\n"
-"	background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210), stop:1 rgb(180, 140, 255));\n"
+"	background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(206,46,208), stop:1 rgb(95,250,224));\n"
 "border:0px solid red;\n"
 "border-radius:30px\n"
 "}")
@@ -173,6 +176,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+
         self.src_file_button = QPushButton(self.MenuBox)
         self.src_file_button.setObjectName(u"src_file_button")
         self.src_file_button.setMinimumSize(QSize(0, 45))
@@ -194,7 +198,55 @@ class Ui_MainWindow(object):
 "background-color: rgba(114, 129, 214, 59);\n"
 "}")
 
+        self.src_cloth_button = QPushButton(self.MenuBox)
+        self.src_cloth_button.setObjectName(u"src_cloth_button")
+        self.src_cloth_button.setMinimumSize(QSize(0, 45))
+        self.src_cloth_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.src_cloth_button.setStyleSheet(u"QPushButton{\n"
+"background-image: url(:/all/img/file.png);\n"
+"background-repeat: no-repeat;\n"
+"background-position: left center;\n"
+"border: none;\n"
+"border-left: 23px solid transparent;\n"
+"\n"
+"text-align: center;\n"
+"padding-left: 0px;\n"
+"color: rgba(255, 255, 255, 199);\n"
+"font: 700 12pt \"Nirmala UI\";\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: rgba(114, 129, 214, 59);\n"
+"}")
+        self.run_button = QPushButton(self.MenuBox)
+        self.run_button.setObjectName(u"run_button")
+        self.run_button.setMinimumSize(QSize(0, 45))
+        self.run_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.run_button.setStyleSheet(u"QPushButton{\n"
+"background-image: url(:/all/img/begin.png);\n"
+"background-repeat: no-repeat;\n"                  
+"background-position: left center;\n"
+"border: none;\n"
+"border-left: 23px solid transparent;\n"
+"\n"
+"text-align: center;\n"
+"padding-left: 0px;\n"
+"color: rgba(255, 255, 255, 199);\n"
+"font: 700 12pt \"Nirmala UI\";\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: rgba(114, 129, 214, 59);\n"
+"}")
+
+        # self.verticalLayout_4.addWidget(self.src_file_button)
+        self.verticalLayout_5.addWidget(self.run_button)
+
         self.verticalLayout_5.addWidget(self.src_file_button)
+        # self.verticalLayout_5.addWidget(self.src_file_button)
+        self.verticalLayout_5.addWidget(self.src_cloth_button)
+
+
 
         self.src_cam_button = QPushButton(self.MenuBox)
         self.src_cam_button.setObjectName(u"src_cam_button")
@@ -450,7 +502,7 @@ class Ui_MainWindow(object):
         self.Class_QF.setStyleSheet(u"QFrame#Class_QF{\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
-"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(162, 129, 247),  stop:1 rgb(119, 111, 252));\n"
+"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(12,203,179),  stop:1 rgb(242, 186, 232));\n"
 "border: 1px outset rgb(98, 91, 213);\n"
 "}\n"
 "")
@@ -540,7 +592,7 @@ class Ui_MainWindow(object):
         self.Target_QF.setStyleSheet(u"QFrame#Target_QF{\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
-"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(253, 139, 133),  stop:1 rgb(248, 194, 152));\n"
+"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(175, 100, 128),  stop:1 rgb(195, 238, 229));\n"
 "border: 1px outset rgb(252, 194, 149)\n"
 "}\n"
 "")
@@ -619,7 +671,7 @@ class Ui_MainWindow(object):
         self.Fps_QF.setStyleSheet(u"QFrame#Fps_QF{\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
-"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(243, 175, 189),  stop:1 rgb(155, 118, 218));\n"
+"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(234, 214, 238),  stop:1 rgb(160, 241, 234));\n"
 "border: 1px outset rgb(153, 117, 219)\n"
 "}\n"
 "")
@@ -700,12 +752,13 @@ class Ui_MainWindow(object):
         self.Model_QF.setStyleSheet(u"QFrame#Model_QF{\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
-"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(66, 226, 192),  stop:1 rgb(62, 154, 193));\n"
+"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(234, 229, 201),  stop:1 rgb(108, 198, 203));\n"
 "border: 1px outset rgb(72, 158, 204)\n"
 "}\n"
 "")
         self.Model_QF.setFrameShape(QFrame.StyledPanel)
         self.Model_QF.setFrameShadow(QFrame.Raised)
+        # self.Model_QF.setWindowIconText("Virtual")
         self.verticalLayout_13 = QVBoxLayout(self.Model_QF)
         self.verticalLayout_13.setSpacing(0)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
@@ -730,7 +783,7 @@ class Ui_MainWindow(object):
         self.label_8.setAlignment(Qt.AlignCenter)
         self.label_8.setWordWrap(False)
         self.label_8.setIndent(0)
-
+        # self.label_8.setText("Virtual")
         self.horizontalLayout_9.addWidget(self.label_8)
 
 
@@ -758,17 +811,23 @@ class Ui_MainWindow(object):
         self.Model_name.setObjectName(u"Model_name")
         self.Model_name.setMinimumSize(QSize(0, 30))
         self.Model_name.setMaximumSize(QSize(16777215, 30))
+
+        # self.Model_bottom.setWindowIconText("sasasa")
         font4 = QFont()
         font4.setFamilies([u"Microsoft YaHei UI"])
         font4.setPointSize(15)
         font4.setBold(False)
         font4.setItalic(False)
         font4.setUnderline(False)
-        self.Model_name.setFont(font4)
-        self.Model_name.setStyleSheet(u"color: rgb(255, 255, 255);\n"
-"font: 15pt \"Microsoft YaHei UI\";\n"
-"")
+        self.Model_name.setFont(font2)
+#         self.Model_name.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+# "font: 15pt \"Microsoft YaHei UI\";\n"
+# "")
+        self.Model_name.setStyleSheet(u"color: rgba(255, 255, 255,210);\n"
+                                   "padding-left:12px;\n"
+                                   "font: 700 italic 16pt \"Segoe UI\";")
         self.Model_name.setAlignment(Qt.AlignCenter)
+        # self.Model_name.setText("VirtualTryOn")
 
         self.verticalLayout_14.addWidget(self.Model_name, 0, Qt.AlignTop)
 
@@ -797,20 +856,38 @@ class Ui_MainWindow(object):
         self.splitter.setStyleSheet(u"#splitter::handle{background: 1px solid  rgba(200, 200, 200,100);}")
         self.splitter.setOrientation(Qt.Horizontal)
         self.splitter.setHandleWidth(2)
+
         self.pre_video = QLabel(self.splitter)
         self.pre_video.setObjectName(u"pre_video")
         self.pre_video.setMinimumSize(QSize(200, 100))
-        self.pre_video.setStyleSheet(u"background-color: rgb(238, 242, 255);\n"
+        self.pre_video.setStyleSheet(u"background-color: rgb(238, 242, 255);\n"  #播放原视频的框框
 "border:2px solid rgb(255, 255, 255);\n"
 "border-radius:15px")
         self.pre_video.setAlignment(Qt.AlignCenter)
+
+
+        """ pixmap = QPixmap("F:\github\GUI\img\stop.png")
+        self.pre_video.setPixmap(pixmap.scaled(self.pre_video.width(), self.pre_video.height(), Qt.KeepAspectRatio)) """
+        
         self.splitter.addWidget(self.pre_video)
+
         self.res_video = QLabel(self.splitter)
         self.res_video.setObjectName(u"res_video")
         self.res_video.setMinimumSize(QSize(200, 100))
-        self.res_video.setStyleSheet(u"background-color: rgb(238, 242, 255);\n"
+        self.res_video.setStyleSheet(u"background-color: rgb(238, 242, 255);\n"  #播放播放视频的框框
 "border:2px solid rgb(255, 255, 255);\n"
 "border-radius:15px")
+
+        
+        self.splitter.addWidget(self.pre_video)
+        self.res_picture = QLabel(self.splitter)
+        self.res_picture.setObjectName(u"res_picture")
+        self.res_picture.setMinimumSize(QSize(200, 100))
+        self.res_picture.setStyleSheet(u"background-color: rgb(238, 242, 255);\n"     #播放生成图片的框框
+"border:2px solid rgb(255, 255, 255);\n"
+"border-radius:15px")
+        self.res_picture.setAlignment(Qt.AlignCenter)
+
         self.res_video.setAlignment(Qt.AlignCenter)
         self.splitter.addWidget(self.res_video)
 
@@ -829,29 +906,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setSpacing(10)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 0, 3, 0)
-        self.run_button = QPushButton(self.Pause_QF)
-        self.run_button.setObjectName(u"run_button")
-        self.run_button.setMinimumSize(QSize(0, 30))
-        self.run_button.setMaximumSize(QSize(16777215, 30))
-        self.run_button.setCursor(QCursor(Qt.PointingHandCursor))
-        self.run_button.setMouseTracking(True)
-        self.run_button.setStyleSheet(u"QPushButton{\n"
-"background-repeat: no-repeat;\n"
-"background-position: center;\n"
-"border: none;\n"
-"}\n"
-"QPushButton:hover{\n"
-"\n"
-"}")
+
+
+
         icon1 = QIcon()
-        icon1.addFile(u":/all/img/begin.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon1.addFile(u":/all/img/pause.png", QSize(), QIcon.Normal, QIcon.On)
+        # icon1.addFile(u":/all/img/begin.png", QSize(), QIcon.Normal, QIcon.Off)
+        # icon1.addFile(u":/all/img/pause.png", QSize(), QIcon.Normal, QIcon.On)
+
+        self.selcect_person_pic_button = QPushButton('选择人物图片')
+        """ self.selcect_person_pic_button.setIcon(icon1) """
+        self.selcect_person_pic_button.setIconSize(QSize(50, 50))
+        self.selcect_person_pic_button.setCheckable(True)
+        self.selcect_person_pic_button.setChecked(False)
+        """ self.selcect_person_pic_button.clicked.connect(select_image) """
+        #self.horizontalLayout_4.addWidget(self.selcect_person_pic_button)
+
+        self.selcect_close_pic_button = QPushButton('选择衣物图片')
+        """ self.selcect_person_pic_button.setIcon(icon1) """
+        self.selcect_close_pic_button.setIconSize(QSize(50, 50))
+        self.selcect_close_pic_button.setCheckable(True)
+        self.selcect_close_pic_button.setChecked(False)
+        """ self.selcect_person_pic_button.clicked.connect(select_image) """
+        #self.horizontalLayout_4.addWidget(self.selcect_close_pic_button)
+        
+        
+
+
+
         self.run_button.setIcon(icon1)
         self.run_button.setIconSize(QSize(30, 30))
         self.run_button.setCheckable(True)
         self.run_button.setChecked(False)
 
-        self.horizontalLayout_4.addWidget(self.run_button)
+        #self.horizontalLayout_4.addWidget(self.run_button)
 
         # self.progress_bar = QProgressBar(self.Pause_QF)
         # self.progress_bar.setObjectName(u"progress_bar")
@@ -882,7 +969,7 @@ class Ui_MainWindow(object):
         self.stop_button.setMaximumSize(QSize(16777215, 30))
         self.stop_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.stop_button.setStyleSheet(u"QPushButton{\n"
-"background-image: url(:/all/img/stop.png);\n"
+
 "background-repeat: no-repeat;\n"
 "background-position: center;\n"
 "border: none;\n"
@@ -892,8 +979,9 @@ class Ui_MainWindow(object):
 "\n"
 "}")
 
-        self.horizontalLayout_4.addWidget(self.stop_button)
+        #self.horizontalLayout_4.addWidget(self.stop_button)
 
+        #self.horizontalLayout_4.addWidget(self.selcect_close_pic_button)
 
         self.main_content.addWidget(self.Pause_QF)
 
@@ -905,7 +993,7 @@ class Ui_MainWindow(object):
         self.prm_page.setMinimumSize(QSize(0, 0))
         self.prm_page.setMaximumSize(QSize(0, 16777215))
         self.prm_page.setStyleSheet(u"QFrame#prm_page{\n"
-"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(243, 175, 189),  stop:1 rgb(155, 118, 218));\n"
+"background-color: qradialgradient(cx:0, cy:0, radius:1, fx:0.1, fy:0.1, stop:0 rgb(159, 165, 213),  stop:1 rgb(232, 245, 200));\n"
 "border-top-left-radius:30px;\n"
 "border-top-right-radius:0px;\n"
 "border-bottom-right-radius:0px;\n"
@@ -973,7 +1061,7 @@ class Ui_MainWindow(object):
         self.ToggleBotton_6.setAutoDefault(False)
         self.ToggleBotton_6.setFlat(False)
 
-        self.verticalLayout_21.addWidget(self.ToggleBotton_6)
+        # self.verticalLayout_21.addWidget(self.ToggleBotton_6)
 
         self.model_box = QComboBox(self.Model_QF_2)
         self.model_box.setObjectName(u"model_box")
@@ -1558,12 +1646,16 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
+
+
+
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.Author.setText(QCoreApplication.translate("MainWindow", u"By xxx", None))
+        self.Author.setText(QCoreApplication.translate("MainWindow", u"By 232", None))
         self.Title.setText(QCoreApplication.translate("MainWindow", u"VirtualTryOn", None))
         self.ToggleBotton.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
-        self.src_file_button.setText(QCoreApplication.translate("MainWindow", u"Local File", None))
+        self.src_file_button.setText(QCoreApplication.translate("MainWindow", u"Person File", None))
+        self.src_cloth_button.setText(QCoreApplication.translate("MainWindow", u"Cloth File", None))
         self.src_cam_button.setText(QCoreApplication.translate("MainWindow", u"Camera", None))
         # self.src_rtsp_button.setText(QCoreApplication.translate("MainWindow", u"Rtsp", None))
         self.VersionLabel.setText(QCoreApplication.translate("MainWindow", u"Version: 2.0", None))
@@ -1574,16 +1666,24 @@ class Ui_MainWindow(object):
         self.close_button.setText("")
         self.char_label.setText(QCoreApplication.translate("MainWindow", u"虚拟试衣", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"前处理时间", None))
-        self.Class_num.setText("")
+
+        self.pre_time = ""
+        self.end_time = ""
+        self.infer_time = ""
+        self.Class_num.setText(self.pre_time)
+
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"推理时间", None))
-        self.Target_num.setText("")
+        self.Target_num.setText(self.infer_time)
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"后处理时间", None))
-        self.fps_label.setText("")
+
+        self.fps_label.setText(self.end_time)
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"模型", None))
+
         self.Model_name.setText("")
+
         self.pre_video.setText("")
         self.res_video.setText("")
-        self.run_button.setText("")
+        self.run_button.setText("Start!")
         self.stop_button.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.ToggleBotton_6.setText(QCoreApplication.translate("MainWindow", u"Model", None))
@@ -1596,4 +1696,3 @@ class Ui_MainWindow(object):
         # self.save_txt_button.setText(QCoreApplication.translate("MainWindow", u"Save Labels(.txt)", None))
         self.status_bar.setText(QCoreApplication.translate("MainWindow", u"Welcome!", None))
     # retranslateUi
-

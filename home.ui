@@ -1741,7 +1741,7 @@ font: 15pt &quot;Microsoft YaHei UI&quot;;
                      </property>
                      <property name="styleSheet">
                       <string notr="true">background-color: rgb(238, 242, 255);
-border:2px solid rgb(255, 255, 255);
+border:2px solid rgb(255, 255, 255);background-image: url(:./all/img/001.png);
 border-radius:15px</string>
                      </property>
                      <property name="text">
